@@ -8,7 +8,7 @@ def byFreq(pair):
 
 def main():
     """The main function."""
-    filename = input("Give the name of the file: ")
+    filename = input("Give the name of the file: ").strip()
     infile = open(filename, "r")
     text = infile.read()  # read the entire file in a string
     text = text.lower()  # lowercase everything
@@ -25,10 +25,10 @@ def main():
     # get list of words that appear in document
     uniqueWords = list(counts.items())
 
-    # put list of words in alphabetical order
+    # sort the list by frequency
     uniqueWords.sort(key=byFreq, reverse=True)
 
-    # print words and associated counts
+    # print the words and their frequencies
     for w in uniqueWords:
         print(w, counts[w])
 
