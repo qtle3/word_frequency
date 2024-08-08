@@ -9,9 +9,15 @@ def byFreq(pair):
 def main():
     """The main function."""
     filename = input("Give the name of the file: ").strip()
-    infile = open(filename, "r")
-    text = infile.read()  # read the entire file in a string
-    text = text.lower()  # lowercase everything
+    try:
+        with open(filename, "r") as infile:
+            text = infile.read()  # read the entire file in a string
+    except FileNotFoundError:
+        print(f"File not found for  '{filename}'")
+        return
+    except OSError as e:
+        print(f"Error reading file '{filename}': {e}")
+        return
     for ch in "!'\"#$%&()*+,-./:;<=>?@[\\]^_`{|}~":
         # loop through all these characters, replacing each by space
         # Note: charcters " and ' are included with a \ before them
